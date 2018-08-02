@@ -1,12 +1,12 @@
-package jitter
+package jitterbug
 
 import (
 	"sync"
 	"time"
 )
 
-// Jitterer can compute a jitter
-type Jitterer interface {
+// Jitter can compute a jitter
+type Jitter interface {
 	Jitter(time.Duration) time.Duration
 }
 
@@ -15,8 +15,8 @@ type Ticker struct {
 	init sync.Once
 	c    chan time.Time
 	cq   chan struct{}
-	Jitterer
-	time.Duration
+	Jitter
+	Interval time.Duration
 }
 
 // C returns the tick channel
@@ -45,7 +45,7 @@ func (t *Ticker) loop() {
 	}
 }
 
-func (t *Ticker) calcDelay() time.Duration { return t.Jitter(t.Duration) }
+func (t *Ticker) calcDelay() time.Duration { return t.Jitter.Jitter(t.Interval) }
 
 func min(a, b time.Duration) time.Duration {
 	if a > b {

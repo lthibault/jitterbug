@@ -1,4 +1,4 @@
-package jitter
+package jitterbug
 
 import (
 	"math/rand"
