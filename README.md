@@ -2,9 +2,12 @@
 
 Tickers with random jitter
 
+[![Godoc Reference](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/lthibault/jitterbug)
+[![Go Report Card](https://goreportcard.com/badge/github.com/SentimensRG/ctx?style=flat-square)](https://goreportcard.com/report/github.com/lthibault/jitterbug)
+
 ## Installation
 
-```go
+```bash
 go get -u github.com/lthibault/jitterbug
 ```
 
