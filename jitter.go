@@ -34,7 +34,7 @@ func (t *Ticker) loop() {
 	defer close(t.c)
 
 	for {
-		time.Sleep(t.calcDelay())
+		time.Sleep(t.CalcDelay())
 
 		select {
 		case <-t.cq:
@@ -45,7 +45,7 @@ func (t *Ticker) loop() {
 	}
 }
 
-func (t *Ticker) calcDelay() time.Duration { return t.Jitter(t.Duration) }
+func (t *Ticker) CalcDelay() time.Duration { return t.Jitter(t.Duration) }
 
 func min(a, b time.Duration) time.Duration {
 	if a > b {

@@ -18,6 +18,6 @@ func (n Norm) Jitter(d time.Duration) time.Duration {
 		f = n.Source.NormFloat64
 	}
 
-	samp := time.Duration(f())
-	return d * (samp*n.Stdev + n.Mean)
+	samp := f()*float64(n.Stdev) + float64(n.Mean)
+	return d * time.Duration(samp)
 }
