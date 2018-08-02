@@ -1,7 +1,6 @@
 package jitterbug
 
 import (
-	"sync"
 	"time"
 )
 
@@ -12,26 +11,30 @@ type Jitter interface {
 
 // Ticker ...
 type Ticker struct {
-	init sync.Once
-	c    chan time.Time
-	cq   chan struct{}
+	C  <-chan time.Time
+	cq chan struct{}
 	Jitter
 	Interval time.Duration
 }
 
-// C returns the tick channel
-func (t *Ticker) C() {
-	t.init.Do(func() {
-		t.c = make(chan time.Time)
-		go t.loop()
-	})
+// New Ticker with the base interval d and the jitter source j.
+func New(d time.Duration, j Jitter) (t *Ticker) {
+	c := make(chan time.Time)
+	t = &Ticker{
+		C:        c,
+		cq:       make(chan struct{}),
+		Interval: d,
+		Jitter:   j,
+	}
+	go t.loop(c)
+	return
 }
 
 // Stop the Ticker
 func (t *Ticker) Stop() { close(t.cq) }
 
-func (t *Ticker) loop() {
-	defer close(t.c)
+func (t *Ticker) loop(c chan<- time.Time) {
+	defer close(c)
 
 	for {
 		time.Sleep(t.calcDelay())
@@ -39,7 +42,7 @@ func (t *Ticker) loop() {
 		select {
 		case <-t.cq:
 			return
-		case t.c <- time.Now():
+		case c <- time.Now():
 		default: // there may be nobody ready to recv
 		}
 	}

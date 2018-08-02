@@ -27,16 +27,16 @@ import (
 )
 
 func main() {
-    t := jitterbug.Ticker{
-        Interval: time.Millisecond * 300,
-        Jitter: &jitterbug.Norm{ Stdev: time.Millisecond * 100},
-    }
+    t := jitterbug.New(
+        time.Millisecond * 300,
+        &jitterbug.Norm{ Stdev: time.Millisecond * 100},
+    )
 
-    // NOTE:  jitterbug.Ticker.C is a method that returns a channel, not a
-    //        concrete channel (unlike time.Ticker)
-    for tick := <- range t.C() {
+    // jitterbug.Ticker behaves like time.Ticker
+    for tick := <- range t.C {
         log.Println(tick)
     }
+    defer tick.Stop()
 }
 
 ```
