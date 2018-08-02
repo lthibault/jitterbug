@@ -20,3 +20,4 @@ cmd/scratch/*
 cmd/*/debug
 
 .idea/*
+.vscode/*
