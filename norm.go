@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Norm is a Jitterer that draws from a normal distribution.
+// Norm is a normal distribution
 type Norm struct {
 	Source      *rand.Rand
 	Mean, Stdev time.Duration
