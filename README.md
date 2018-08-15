@@ -29,14 +29,14 @@ import (
 func main() {
     t := jitterbug.New(
         time.Millisecond * 300,
-        &jitterbug.Norm{ Stdev: time.Millisecond * 100},
+        &jitterbug.Norm{ Stdev: time.Millisecond * 100 },
     )
 
     // jitterbug.Ticker behaves like time.Ticker
     for tick := <- range t.C {
         log.Println(tick)
     }
-    defer tick.Stop()
+    defer t.Stop()
 }
 
 ```
