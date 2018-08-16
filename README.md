@@ -40,6 +40,21 @@ func main() {
 
 ```
 
+Jitterbug is compatible with the univariate distributions from [GoNum](https://godoc.org/gonum.org/v1/gonum/stat/distuv).  For example:
+
+```go
+t := jitterbug.New(
+    time.Millisecond * 300,
+    &jitterbug.Univariate{
+        Sampler: &distruv.Gamma{
+            // Tip: cast time.Duration as float64 when using gonum's distruv
+            Alpha: float64(time.Millisecond * 100),
+            Beta:  float64(time.Millisecond * 200),
+        }
+    },
+)
+```
+
 ## RFC
 
 If you find this useful please let me know:  <l.thibault@sentimens.com>
