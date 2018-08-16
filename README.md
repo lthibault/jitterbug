@@ -36,7 +36,6 @@ func main() {
     for tick := <- range t.C {
         log.Println(tick)
     }
-    defer t.Stop()
 }
 
 ```
