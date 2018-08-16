@@ -9,7 +9,7 @@ type Jitter interface {
 	Jitter(time.Duration) time.Duration
 }
 
-// Ticker ...
+// Ticker behaves like time.Ticker
 type Ticker struct {
 	C  <-chan time.Time
 	cq chan struct{}

@@ -3,8 +3,7 @@ package jitterbug
 import "time"
 
 // Sampler can sample from any univariate distribution.  It is used in conjunction
-// with the Univariate type and is compatible with GoNum
-// https://godoc.org/gonum.org/v1/gonum/stat/distuv.
+// with the Univariate type and is compatible with [GoNum](https://godoc.org/gonum.org/v1/gonum/stat/distuv).
 type Sampler interface {
 	Rand() float64
 }
