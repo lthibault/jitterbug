@@ -9,6 +9,9 @@ import (
 type Uniform struct {
 	Source *rand.Rand
 	Limit  time.Duration
+
+	// If true, only a positive jitter will be added to the base duration
+	NonNegative bool
 }
 
 // Jitter the duration by drawing from a uniform distribution
@@ -18,15 +21,17 @@ func (u Uniform) Jitter(d time.Duration) time.Duration {
 		f = u.Source.Int63n
 	}
 
-	sign := rand.Intn
-	if u.Source != nil {
-		sign = u.Source.Intn
-	}
-
 	samp := time.Duration(f(int64(u.Limit)))
 
-	if sign(1) == 0 {
-		return d - samp
+	if u.NonNegative {
+		sign := rand.Intn
+		if u.Source != nil {
+			sign = u.Source.Intn
+		}
+
+		if sign(1) == 0 {
+			samp = -samp
+		}
 	}
 
 	return d + samp
