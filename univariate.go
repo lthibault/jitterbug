@@ -16,5 +16,5 @@ type Univariate struct {
 
 // Jitter the duration by drawing from a univariate distribution
 func (u Univariate) Jitter(d time.Duration) time.Duration {
-	return d * time.Duration(u.Rand())
+	return d + time.Duration(u.Rand())
 }
