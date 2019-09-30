@@ -5,6 +5,8 @@ Tickers with random jitter
 [![Godoc Reference](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/lthibault/jitterbug)
 [![Go Report Card](https://goreportcard.com/badge/github.com/SentimensRG/ctx?style=flat-square)](https://goreportcard.com/report/github.com/lthibault/jitterbug)
 
+Jitterbug provides functionality similar to `time.Ticker`, but with a configurable random jitter.  Jitterbug is considered **stable**, and production-ready.
+
 ## Installation
 
 ```bash
