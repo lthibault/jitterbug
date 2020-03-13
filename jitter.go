@@ -6,6 +6,8 @@ import (
 
 // Jitter can compute a jitter
 type Jitter interface {
+	// Jitter consumes an interval from a ticker and returns the final, jittered
+	// duration.
 	Jitter(time.Duration) time.Duration
 }
 
