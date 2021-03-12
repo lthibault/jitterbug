@@ -12,7 +12,7 @@ type Uniform struct {
 }
 
 // Jitter the duration by drawing from a uniform distribution
-// over the range [Min, d). Returns Min if d <= Min
+// over the range [Min, d). Panics if d <= Min
 func (u Uniform) Jitter(d time.Duration) time.Duration {
 	drawUniform := rand.Int63n
 	if u.Source != nil {
@@ -21,7 +21,7 @@ func (u Uniform) Jitter(d time.Duration) time.Duration {
 
 	delta := d - u.Min
 	if delta <= 0 {
-		return u.Min
+		panic("duration must exceed min")
 	}
 	return u.Min + time.Duration(drawUniform(int64(delta)))
 }
