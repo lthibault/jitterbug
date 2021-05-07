@@ -12,7 +12,7 @@ Jitterbug has no external dependencies, has a stable API, and is production-read
 ## Installation
 
 ```bash
-go get -u github.com/lthibault/jitterbug
+go get -u github.com/lthibault/jitterbug/v2
 ```
 
 ## Usage
