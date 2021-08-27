@@ -37,7 +37,7 @@ func main() {
     )
 
     // jitterbug.Ticker behaves like time.Ticker
-    for tick := <- range t.C {
+    for tick := range t.C {
         log.Println(tick)
     }
 }
