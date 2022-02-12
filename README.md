@@ -62,4 +62,4 @@ t := jitterbug.New(
 ## Compatible libraries
 
 - [GoNum](https://github.com/gonum/gonum), specifically the [univariate distributions](https://godoc.org/gonum.org/v1/gonum/stat/distuv).
-- [Suture](https://github.com/thejerf/suture) can use jitterbug for it's backoff [durations](https://godoc.org/github.com/thejerf/suture#Jitter).
+- [Suture](https://github.com/thejerf/suture) can use jitterbug for it's backoff [durations](https://pkg.go.dev/github.com/thejerf/suture/v4#Jitter).
